@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'talkingdata_sdk_plugin'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'TalkingData SDK Flutter plugin.'
   s.description      = <<-DESC
 TalkingData SDK Flutter plugin.
