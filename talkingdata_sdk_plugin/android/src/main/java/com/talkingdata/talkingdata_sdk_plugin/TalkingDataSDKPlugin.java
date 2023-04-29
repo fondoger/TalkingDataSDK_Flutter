@@ -60,6 +60,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
     switch (call.method) {
       case "init":
         TalkingDataSDK.init(mContext,(String) call.argument("appID"),(String) call.argument("channelID"),(String) call.argument("custom"));
+        result.success(null);
         break;
       case "getDeviceID":
         result.success(TalkingDataSDK.getDeviceId(mContext));
@@ -69,9 +70,11 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
         break;
       case "onPageBegin":
         TalkingDataSDK.onPageBegin(mContext, (String) call.argument("pageName"));
+        result.success(null);
         break;
       case "onPageEnd":
         TalkingDataSDK.onPageEnd(mContext, (String) call.argument("pageName"));
+        result.success(null);
         break;
 
       case "onEvent":
@@ -83,15 +86,18 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
                 (String) call.argument("eventID"),
                 paramWith
         );
+        result.success(null);
         break;
       case "setGlobalKV":
         String globalKey = call.argument("key");
         Object globalValue = call.argument("value");
         TalkingDataSDK.setGlobalKV(globalKey, globalValue);
+        result.success(null);
         break;
       case "removeGlobalKV":
         String key = call.argument("key");
         TalkingDataSDK.removeGlobalKV(key);
+        result.success(null);
         break;
       case "onRegister":
         String profileId = call.argument("profileId");
@@ -112,6 +118,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
         profile.setProperty9((Object)call.argument("property9"));
         profile.setProperty10((Object)call.argument("property10"));
         TalkingDataSDK.onRegister(profileId, profile, invitationCode);
+        result.success(null);
         break;
       case "onLogin":
         TalkingDataProfile profileLogin = TalkingDataProfile.createProfile();
@@ -130,6 +137,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
         profileLogin.setProperty9((Object)call.argument("property9"));
         profileLogin.setProperty10((Object)call.argument("property10"));
         TalkingDataSDK.onLogin((String) call.argument("profileId"), profileLogin);
+        result.success(null);
         break;
       case "onProfileUpdate":
         TalkingDataProfile profileUpdate = TalkingDataProfile.createProfile();
@@ -148,26 +156,32 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
         profileUpdate.setProperty9((Object)call.argument("property9"));
         profileUpdate.setProperty10((Object)call.argument("property10"));
         TalkingDataSDK.onProfileUpdate(profileUpdate);
+        result.success(null);
         break;
       case "onCreateCard":
         TalkingDataSDK.onCreateCard((String) call.argument("profile"),
                 (String) call.argument("method"),
                 (String) call.argument("content"));
+        result.success(null);
         break;
       case "onReceiveDeepLink":
         TalkingDataSDK.onReceiveDeepLink((String) call.argument("link"));
+        result.success(null);
         break;
       case "onFavorite":
         TalkingDataSDK.onFavorite((String) call.argument("category"),
                 (String) call.argument("content"));
+        result.success(null);
         break;
       case "onShare":
         TalkingDataSDK.onShare((String) call.argument("profile"),
                 (String) call.argument("content"));
+        result.success(null);
         break;
       case "onPunch":
         TalkingDataSDK.onPunch((String) call.argument("profile"),
                 (String) call.argument("punchId"));
+        result.success(null);
         break;
       case "onSearch":
         TalkingDataSearch tdSearch = TalkingDataSearch.createSearch();
@@ -180,6 +194,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
         tdSearch.setStartDate(callTransInt(call, "startDate"));
         tdSearch.setEndDate(callTransInt(call, "endDate"));
         TalkingDataSDK.onSearch(tdSearch);
+        result.success(null);
         break;
       case "onReservation":
         TalkingDataSDK.onReservation((String) call.argument("profile"),
@@ -187,6 +202,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
                 (String) call.argument("category"),
                 callTransInt(call, "amount"),
                 (String) call.argument("term"));
+        result.success(null);
         break;
       case "onBooking":
         TalkingDataSDK.onBooking((String) call.argument("profile"),
@@ -194,20 +210,24 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
                 (String) call.argument("category"),
                 callTransInt(call, "amount"),
                 (String) call.argument("content"));
+        result.success(null);
         break;
       case "onContact":
         TalkingDataSDK.onContact((String) call.argument("profile"),
                 (String) call.argument("content"));
+        result.success(null);
         break;
       case "onAchievementUnlock":
         TalkingDataSDK.onAchievementUnlock((String) call.argument("profile"),
                 (String) call.argument("achievementId"));
+        result.success(null);
         break;
       case "onViewItem":
         TalkingDataSDK.onViewItem((String) call.argument("itemId"),
                 (String) call.argument("category"),
                 (String) call.argument("name"),
                 callTransInt(call, "unitPrice"));
+        result.success(null);
         break;
       case "onViewShoppingCart":
         TalkingDataShoppingCart shoppingCart = TalkingDataShoppingCart.createShoppingCart();
@@ -223,6 +243,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
           );
         }
         TalkingDataSDK.onViewShoppingCart(shoppingCart);
+        result.success(null);
         break;
       case "onAddItemToShoppingCart":
         TalkingDataSDK.onAddItemToShoppingCart((String) call.argument("itemID"),
@@ -230,11 +251,13 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
                 (String) call.argument("name"),
                 callTransInt(call, "unitPrice"),
                 callTransInt(call, "amount"));
+        result.success(null);
         break;
       case "onPlaceOrder":
         TalkingDataSDK.onPlaceOrder(getOrderFromFlutter(call),
                 (String) call.argument("profileID")
         );
+        result.success(null);
         break;
       case "onPay":
         TalkingDataSDK.onPay(
@@ -245,6 +268,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
                 (String) call.argument("payType"),
                 (String) call.argument("itemId"),
                 callTransInt(call, "itemCount"));
+        result.success(null);
         break;
       case "onLearn":
         TalkingDataSDK.onLearn(
@@ -252,6 +276,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
                 (String) call.argument("course"),
                 callTransInt(call, "begin"),
                 callTransInt(call, "duration"));
+        result.success(null);
         break;
       case "onRead":
         TalkingDataSDK.onRead(
@@ -259,6 +284,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
                 (String) call.argument("book"),
                 callTransInt(call, "begin"),
                 callTransInt(call, "duration"));
+        result.success(null);
         break;
       case "onBrowse":
         TalkingDataSDK.onBrowse(
@@ -266,6 +292,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
                 (String) call.argument("content"),
                 callTransInt(call, "begin"),
                 callTransInt(call, "duration"));
+        result.success(null);
         break;
       case "onTransaction":
         TalkingDataTransaction transaction = TalkingDataTransaction.createTransaction();
@@ -281,6 +308,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
         TalkingDataSDK.onTransaction(
                 (String) call.argument("profile"),
                 transaction);
+        result.success(null);
 
         break;
       case "onCredit":
@@ -288,6 +316,7 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
                 (String) call.argument("profile"),
                 callTransInt(call, "amount"),
                 (String) call.argument("content"));
+        result.success(null);
         break;
       case "onChargeBack":
         TalkingDataSDK.onChargeBack(
@@ -295,42 +324,51 @@ public class TalkingDataSDKPlugin implements FlutterPlugin, MethodCallHandler {
                 (String) call.argument("orderId"),
                 (String) call.argument("reason"),
                 (String) call.argument("type"));
+        result.success(null);
         break;
       case "onCreateRole":
         TalkingDataSDK.onCreateRole((String) call.argument("name"));
+        result.success(null);
         break;
       case "onTrialFinished":
         TalkingDataSDK.onTrialFinished(
                 (String) call.argument("profile"),
                 (String) call.argument("content"));
+        result.success(null);
         break;
       case "onGuideFinished":
         TalkingDataSDK.onGuideFinished(
                 (String) call.argument("profile"),
                 (String) call.argument("content"));
+        result.success(null);
         break;
       case "onPreviewFinished":
         TalkingDataSDK.onPreviewFinished(
                 (String) call.argument("profile"),
                 (String) call.argument("content"));
+        result.success(null);
         break;
       case "onFreeFinished":
         TalkingDataSDK.onFreeFinished(
                 (String) call.argument("profile"),
                 (String) call.argument("content"));
+        result.success(null);
         break;
       case "onLevelPass":
         TalkingDataSDK.onLevelPass(
                 (String) call.argument("profile"),
                 (String) call.argument("levelId"));
+        result.success(null);
         break;
       case "onOrderPaySucc":
         TalkingDataSDK.onOrderPaySucc(getOrderFromFlutter(call),
                 (String) call.argument("payType"),
                 (String) call.argument("profileID"));
+        result.success(null);
         break;
       case "onCancelOrder":
         TalkingDataSDK.onCancelOrder(getOrderFromFlutter(call));
+        result.success(null);
         break;
       default:
         result.notImplemented();
